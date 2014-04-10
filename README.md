@@ -3,6 +3,8 @@ angular-tour
 
 Angular tour based on Introjs.
 
+[Demo](http://dutchcoders.github.io/angular-tour)
+
 ```
 var app =  angular.module('app', ['duco.tour']);
 
