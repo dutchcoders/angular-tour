@@ -31,8 +31,9 @@
 }
 
 .introjs-fixParent {
-  z-index: auto !important;
-  opacity: 1.0 !important;
+    z-index: auto !important;
+    opacity: 1.0 !important;
+    position: relative !important ;
 }
 
 .introjs-showElement {
@@ -263,4 +264,145 @@
   width: 0;
   left: 50%;
   top: 50%;
+}
+
+/**
+ * angular-tour v0.1
+ * https://github.com/dutchcoders/angular-tour
+ *
+ * based on Intro.js v0.8.0
+ * https://github.com/usablica/intro.js
+ * MIT licensed
+ *
+ * Copyright (C) 2014 dutchcoders 
+ */
+
+.transform(@properties){    
+    transform: @properties;
+    -ms-transform: @properties;
+    -moz-transform: @properties;
+    -webkit-transform: @properties;
+}
+
+.introjs-fixParent
+{
+	.transform(none) !important;
+	position: relative !important ;
+}
+
+.introjs-tooltip {
+	@media(max-width: 1024px){
+		width: 300px !important;
+		left: 0 !important;
+		top: 0 !important;
+	}
+}
+
+.introjs-button {
+	a:hover {
+	}
+
+	&:hover {
+	}
+
+	&.introjs-prevbutton {
+ 	}
+
+	&.introjs-nextbutton
+	{
+	}
+
+	&.introjs-nextbutton:hover {
+	}
+
+	&.introjs-donebutton
+	{
+	}
+
+	&.introjs-donebutton:hover {
+	}
+
+}
+
+.introjs-bullets ul li a.disabled:hover
+{
+}
+
+
+.introjs-helperLayer {
+	background-color: transparent !important;
+
+	@media(max-width: 1024px){
+		top: 50% !important;
+		left: 50% !important;
+		margin-top: -161px !important;	   
+		margin-left: -161px !important;	  
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important; 
+	}
+}
+
+.introjs-arrow {
+	&.left {
+	}
+	&.right {
+	}
+	&.top {
+	}
+	@media(max-width: 1024px){
+		display: none !important;
+	}
+}
+
+.introjs-skipbutton
+{
+	float:left;
+}
+
+/**
+ * angular-tour v0.1
+ * https://github.com/dutchcoders/angular-tour
+ *
+ * based on Intro.js v0.8.0
+ * https://github.com/usablica/intro.js
+ * MIT licensed
+ *
+ * Copyright (C) 2014 dutchcoders 
+ */
+.introjs-fixParent {
+  transform: none !important;
+  -ms-transform: none !important;
+  -moz-transform: none !important;
+  -webkit-transform: none !important;
+  position: relative !important ;
+}
+@media (max-width: 1024px) {
+  .introjs-tooltip {
+    width: 300px !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+}
+.introjs-helperLayer {
+  background-color: transparent !important;
+}
+@media (max-width: 1024px) {
+  .introjs-helperLayer {
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -161px !important;
+    margin-left: -161px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+@media (max-width: 1024px) {
+  .introjs-arrow {
+    display: none !important;
+  }
+}
+.introjs-skipbutton {
+  float: left;
 }
