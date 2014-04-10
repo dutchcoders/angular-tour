@@ -1,0 +1,133 @@
+/**
+ * angular-tour v0.1
+ * https://github.com/dutchcoders/angular-tour
+ *
+ * based on Intro.js v0.8.0
+ * https://github.com/usablica/intro.js
+ * MIT licensed
+ *
+ * Copyright (C) 2014 dutchcoders 
+ */
+
+.introjs-fixParent
+{
+	.transform(none) !important;
+	position: relative !important ;
+}
+
+.introjs-tooltip {
+	background-color: #4184fb;
+	color: #fff;
+	border: solid 1px #005CFF;
+
+	@media(max-width: 1024px){
+		width: 300px !important;
+		left: 0 !important;
+		top: 0 !important;
+	}
+}
+
+.introjs-button {
+	font-size: 0.9em;
+	font-family: 'Open Sans';
+	text-shadow: none;
+	background-color: transparent;
+	color:  #fff;
+	border: none;
+	background-image: none;
+
+	a:hover {
+		color:  #fff;
+	}
+
+	&:hover {
+		border-color: none;
+		text-decoration: none;
+		box-shadow: none;
+		color: #fff;
+	}
+
+	&.introjs-prevbutton {
+		display: none;
+ 	}
+
+	&.introjs-nextbutton
+	{
+		font-weight: bold;
+		background-color: #fff;
+		background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+		background-image: -o-linear-gradient(#f4f4f4, #ececec);
+		-moz-border-radius: 0.2em;
+		border-radius: 0.2em;
+		background-color: white;
+		color:  #4184fb ;
+	}
+
+	&.introjs-nextbutton:hover {
+		border-color: #bcbcbc;
+		text-decoration: none;
+		box-shadow: 0px 1px 1px #e3e3e3;
+	}
+
+	&.introjs-donebutton
+	{
+		font-weight: bold;
+		background-color: #fff;
+		background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+		background-image: -o-linear-gradient(#f4f4f4, #ececec);
+		-moz-border-radius: 0.2em;
+		border-radius: 0.2em;
+		background-color: white;
+		color:  #4184fb ;
+	}
+
+	&.introjs-donebutton:hover {
+		border-color: #bcbcbc;
+		text-decoration: none;
+		box-shadow: 0px 1px 1px #e3e3e3;
+	}
+
+}
+
+.introjs-bullets ul li a.disabled:hover
+{
+ 	background: #ccc;
+	cursor: default;
+}
+
+
+.introjs-helperLayer {
+	background-color: transparent !important;
+
+	@media(max-width: 1024px){
+		top: 50% !important;
+		left: 50% !important;
+		margin-top: -161px !important;	   
+		margin-left: -161px !important;	  
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important; 
+	}
+}
+
+.introjs-arrow {
+	border-color: #4184fb;
+	&.left {
+		border-right-color: #4184fb;
+	}
+	&.right {
+		border-left-color: #4184fb;
+	}
+	&.top {
+		border-bottom-color: #4184fb;
+	}
+	@media(max-width: 1024px){
+		display: none !important;
+	}
+}
+
+.introjs-skipbutton
+{
+	float:left;
+}
+
