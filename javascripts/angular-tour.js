@@ -8,7 +8,6 @@
  *
  * Copyright (C) 2014 dutchcoders 
  */
-
 var tour = angular.module('duco.tour', []);
 
 tour.run(["$templateCache", function($templateCache) {
@@ -24,16 +23,16 @@ tour.run(["$templateCache", function($templateCache) {
 		"		<a ng-hide=\"$index>step\" ng-class=\"{active:$index==step}\" ng-disabled=\"\" ng-click=\"go($index)\">&nbsp;</a>" +
 		"		</li></ul></div><div class=\"introjs-arrow top\" style=\"display: inherit;\"></div>" +
 		"<div class=\"introjs-tooltipbuttons\">" +
-		"	<a class=\"introjs-button introjs-skipbutton\" ng-hide=\"isLast()\" ng-click=\"skip()\" ng-bind-html=\"tour.skipLabel\">Skip</a>" +
-		"	<a ng-click=\"previous()\" ng-hide=\"isFirst()\" class=\"introjs-button introjs-prevbutton\" ng-class=\"{'introjs-disabled': step}\" ng-bind-html=\"tour.previousLabel\">Previous</a>" +
+		"	<a class=\"introjs-button introjs-skipbutton\" ng-hide=\"isLast()\" ng-click=\"skip()\" ng-bind=\"tour.skipLabel\">Skip</a>" +
+		"	<a ng-click=\"previous()\" ng-hide=\"isFirst()\" class=\"introjs-button introjs-prevbutton\" ng-class=\"{'introjs-disabled': step}\" ng-bind=\"tour.previousLabel\">Previous</a>" +
 		"	<a ng-click=\"next();\" ng-hide=\"isLast()\" class=\"introjs-button introjs-nextbutton\" ng-bind=\"tour.nextLabel\">Next</a>" +
 		"	<a ng-click=\"close();\" ng-hide=\"!isLast()\" class=\"introjs-button introjs-donebutton\" ng-bind=\"tour.doneLabel\">Ready</a>" +
 		"</div>" +
 		"</div></div>");
 }]);
 
-tour.factory('$tour', ['$transition', '$timeout', '$document', '$compile', '$rootScope',
-    function ($transition, $timeout, $document, $compile, $rootScope) {
+tour.factory('$tour', ['$timeout', '$document', '$compile', '$rootScope',
+    function ($timeout, $document, $compile, $rootScope) {
 	    var $tour = {};
 	    var tourDomEl = null;
             var scope = null;
@@ -77,7 +76,7 @@ tour.directive('mjTourStep', ['$timeout', '$window', '$compile', '$location', '$
 	currentStep = null;
 
 	scope.$on('$destroy', function() {
-		$oldElement = $(scope.$eval(attrs.mjTourStep).element);	
+		$oldElement = angular.element(scope.$eval(attrs.mjTourStep).element);	
 		$oldElement.removeClass('introjs-showElement introjs-relativePosition');
 		$oldElement.parents().removeClass('introjs-fixParent');
 		if (currentStep) {
@@ -87,17 +86,17 @@ tour.directive('mjTourStep', ['$timeout', '$window', '$compile', '$location', '$
 
 	scope.$watch(attrs.mjTourStep, function(newVal, oldVal) {
 			if (oldVal) {
-				$oldElement = $(oldVal.element);	
+				$oldElement = angular.element(oldVal.element);	
 				$oldElement.removeClass('introjs-showElement introjs-relativePosition');
 				$oldElement.parents().removeClass('introjs-fixParent');
 				$oldElement.removeClass(oldVal.class || '');
 
-				$('.introjsFloatingElement').remove();
+				angular.element('.introjsFloatingElement').remove();
 			}
 
 			currentStep = newVal;
 
-			$newElement = $(newVal.element);
+			$newElement = angular.element(newVal.element);
 		
 			position = newVal.position || 'bottom';
 			url = newVal.url || null;
@@ -107,7 +106,7 @@ tour.directive('mjTourStep', ['$timeout', '$window', '$compile', '$location', '$
 			$('.introjs-tooltip').css({'margin-left': ''});
 
 			if ($newElement.length == 0) {
-				$newElement = $("<div class='introjsFloatingElement'/>");
+				$newElement = angular.element("<div class='introjsFloatingElement'/>");
 				var body = $document.find('body').eq(0);
 				body.append($newElement);
 				position='floating';
@@ -121,36 +120,38 @@ tour.directive('mjTourStep', ['$timeout', '$window', '$compile', '$location', '$
 			element.css({width: $newElement.outerWidth(), height:  $newElement.outerHeight() });
 
 			
-			$('.introjs-tooltip').css({'margin-top': 0, 'margin-left': 0});
+			angular.element('.introjs-tooltip').css({'margin-top': 0, 'margin-left': 0});
 
 			switch (position) {
 				case 'left':
-					$('.introjs-tooltip').css({top: 0, bottom: '', left: '', right: $newElement.outerWidth() + 10});
-					$('.introjs-arrow').addClass('right');			
+					angular.element('.introjs-tooltip').css({top: 0, bottom: '', left: '', right: $newElement.outerWidth() + 10});
+					angular.element('.introjs-arrow').addClass('right');			
 					break;
 				case 'right':
-					$('.introjs-tooltip').css({top: 0, bottom: '', right: '', left: $newElement.outerWidth() + 10});
-					$('.introjs-arrow').addClass('left');		
+					angular.element('.introjs-tooltip').css({top: 0, bottom: '', right: '', left: $newElement.outerWidth() + 10});
+					angular.element('.introjs-arrow').addClass('left');		
 					// unimplemented	
 					break;
 				case 'top':
-					$('.introjs-arrow').addClass('bottom');			
+					angular.element('.introjs-arrow').addClass('bottom');			
 					// unimplemented	
 					break;
 				case 'floating':
-					$('.introjs-tooltip').css({top: '50%', 'margin-top': '-' + (($newElement.outerHeight() / 2) + 10) + 'px' , bottom: '', left: '50%', 'margin-left': '-' + (($newElement.outerWidth() /2) + 10) + 'px', right: ''});
-					$('.introjs-tooltip').css({top: '50%', 'margin-top': '-100px' , bottom: '', left: '50%', 'margin-left': '-125px', right: ''});
+					angular.element('.introjs-tooltip').css({top: '50%', 'margin-top': '-' + (($newElement.outerHeight() / 2) + 10) + 'px' , bottom: '', left: '50%', 'margin-left': '-' + (($newElement.outerWidth() /2) + 10) + 'px', right: ''});
+					angular.element('.introjs-tooltip').css({top: '50%', 'margin-top': '-100px' , bottom: '', left: '50%', 'margin-left': '-125px', right: ''});
 					break;
 				default:
-					$('.introjs-tooltip').css({top: $newElement.outerHeight() + 10, bottom: '', left: '', right: ''});
-					$('.introjs-arrow').addClass('top');			
+					angular.element('.introjs-tooltip').css({top: $newElement.outerHeight() + 10, bottom: '', left: '', right: ''});
+					angular.element('.introjs-arrow').addClass('top');			
 			}
 
 			if (url) {	
 				$location.url(url);
 			}
 
-			$('.introjs-tooltip').css(newVal.css || {});
+			angular.element('.introjs-tooltip').css(newVal.css || {});
+
+                        $newElement.get(0).scrollIntoView();
 		});
 		// element.
 	}
@@ -226,5 +227,3 @@ tour.directive('mjTour', ['$document', '$timeout', '$window', function($document
     }
   };
 }]);
-
-
